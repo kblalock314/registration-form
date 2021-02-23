@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+Katelyn Blalock 
+Week 6 Programming Lab
+10/07/2020
+-->
+
+<head>
+	<title>Register</title>
+	<meta charset="utf-8">
+
+<script>
+//Initiate function to collect and validate user data
+function getUserData(username,password,firstlastname,address,city,state,zipcode,email,phonenumber) 
+{
+	//Initiate variables to store user data
+	var userName = document.getElementById(username).value;
+	var passWord = document.getElementById(password).value;
+	var firstlastName = document.getElementById(firstlastname).value;
+	var address = document.getElementById(address).value;
+	var city = document.getElementById(city).value;
+	var state = document.getElementById(state).value;
+	var zipcode = document.getElementById(zipcode).value;
+	var email = document.getElementById(email).value;
+	var phoneNumber = document.getElementById(phonenumber).value;
+	
+	//Initiate variables to track when each field is validated
+	var usernameEntry = "invalid";
+	var passwordEntry = "invalid";
+	var nameEntry = "invalid";
+	var addressEntry = "invalid";
+	var cityEntry = "invalid";
+	var stateEntry = "invalid";
+	var zipcodeEntry = "invalid";
+	var emailEntry = "invalid";
+	var phonenumberEntry = "invalid";
+	
+	
+	//Username verification
+	
+	//If the username is between 4 and 20 characters, set usernameEntry equal to valid;
+	if ((userName.length >= 4) && (userName.length <= 20)) 
+	{ 
+		usernameEntry = "valid";
+		document.getElementById("usernameerror").innerHTML = ("")
+	}
+	
+	//If the username is not between 4 and 20 characters, inform the user
+	else 
+	{
+		document.getElementById("usernameerror").innerHTML = ("Your username is not between 4-20 characters.")
+	}
+	
+	
+	//Password verification
+	
+	//Validate that password is between 4 and 12 characters
+	if ((passWord.length >= 4) && (passWord.length <= 12)) 
+	{ 
+		//Initiate variables to use for indexing and checking the passWord variable for correct characters
+		var passIndex = 0;
+		var containsNumber = "false";
+		var containsUppercase = "false";
+		var containsLowercase = "false";
+		var containsSpecialChar = "false";
+		
+		//Initiate loop for checking that passWord contains the correct characters		
+		for (passIndex = 0; passIndex < (passWord.length); passIndex++)
+		{
+		
+			//Verify password contains a number 
+			if ((passWord.charCodeAt(passIndex) >= 48) && (passWord.charCodeAt(passIndex) <= 57))
+			{
+				containsNumber = "true";
+			}
+			
+			//Verify password contains an uppercase letter
+			if ((passWord.charCodeAt(passIndex) >= 65) && (passWord.charCodeAt(passIndex) <= 90))
+			{
+				containsUppercase = "true";
+			}
+				
+			//Verify password contains a lowercase letter	
+			if ((passWord.charCodeAt(passIndex) >= 97) && (passWord.charCodeAt(passIndex) <= 122))
+			{
+				containsLowercase = "true";
+			}
+			
+			//Verify password contains a special character including !@#$ only
+			if ((passWord.charCodeAt(passIndex) == 33) || (passWord.charCodeAt(passIndex) == 64) || (passWord.charCodeAt(passIndex) == 35) || (passWord.charCodeAt(passIndex) == 36))
+			{
+				containsSpecialChar = "true";
+			}	
+			
+		}
+		
+		//If the password contains all of the necessary characters, set passwordEntry equal to valid
+		if ((containsNumber == "true") && (containsUppercase == "true") && (containsLowercase == "true") && (containsSpecialChar = "true"))
+		{
+			passwordEntry = "valid";
+			document.getElementById("passworderror").innerHTML = ("");
+		}	
+		
+		//If the password doesn't contain all necessary characters, alert the user
+		else 
+		{
+		document.getElementById("passworderror").innerHTML = ("Your password does not meet the necessary requirements.")
+		}
+	}
+	
+	//If the password is not between 4-12 characters, inform the user
+	else 
+	{
+		document.getElementById("passworderror").innerHTML = ("Your password is not between 4-12 characters.")
+	}
+	
+	
+	
+	//Name verification
+	
+	//If the user entered at least one character in the Name field, set its Entry variable equal to valid
+	if (firstlastName.length >= 1)
+	{
+		nameEntry = "valid";
+		document.getElementById("nameerror").innerHTML = ("")
+	}	
+	
+	else 
+	{
+		document.getElementById("nameerror").innerHTML = ("You did not enter a first and last name.")
+	}
+	
+	
+	//Address verification
+	
+	//If the user entered at least one character in the Address field, set its Entry variable equal to valid
+	if (address.length >= 1)
+	{
+		addressEntry = "valid";
+		document.getElementById("addresserror").innerHTML = ("")
+	}	
+	
+	else 
+	{
+		document.getElementById("addresserror").innerHTML = ("You did not enter an address.")
+	}
+	
+	
+	//City verification
+	
+	//If the user entered at least one character in the City field, set its Entry variable equal to valid
+	if (city.length >= 1)
+	{
+		cityEntry = "valid";
+		document.getElementById("cityerror").innerHTML = ("")
+	}	
+	
+	//If the user did not enter anything in the City field, alert the user
+	else 
+	{
+		document.getElementById("cityerror").innerHTML = ("You did not enter a city.")
+	}
+
+
+	//State verification
+	
+	//If the user entered at least one character in the City field, set its Entry variable equal to valid
+	if (state.length >= 1)
+	{
+		stateEntry = "valid";
+		document.getElementById("stateerror").innerHTML = ("")
+	}	
+	
+	//If the user did not enter anything in the City field, alert the user
+	else 
+	{
+		document.getElementById("stateerror").innerHTML = ("You did not enter a state.")
+	}
+	
+	
+	//Zipcode verification
+	
+	//If the user entered at least one character in the Zipcode field, set its Entry variable equal to valid
+	if (zipcode.length >= 1)
+	{
+		zipcodeEntry = "valid";
+		document.getElementById("zipcodeerror").innerHTML = ("")
+	}	
+	
+	//If the user did not enter anything in the Zipcode field, alert the user
+	else 
+	{
+		document.getElementById("zipcodeerror").innerHTML = ("You did not enter a zipcode.")
+	}
+	
+	
+	//Email verification
+	
+	//If the user entered at least one character in the Email field, set its Entry variable equal to valid
+	if (email.length >= 1)
+	{
+		emailEntry = "valid";
+		document.getElementById("emailerror").innerHTML = ("")
+	}	
+	
+	//If the user did not enter anything in the Email field, alert the user
+	else 
+	{
+		document.getElementById("emailerror").innerHTML = ("You did not enter an email address.")
+	}
+
+	
+	//Phone number verification
+	
+	//If the user has entered a 10-digit phone number in the correct format, move on to verify that all characters except ( ) - are numbers
+	if ((phoneNumber.length == 13) && (phoneNumber.charCodeAt(0) == 40) && (phoneNumber.charCodeAt(4) == 41) && (phoneNumber.charCodeAt(8) == 45))
+	{
+		
+		//Create a variable that removes any special characters from the phone number, including ( ) -
+		var numberCheck = phoneNumber.substr(1,3) + phoneNumber.substr(5,3) + phoneNumber.substr(9,4);
+		
+		//Initiate variables to use for indexing and counting the new numberCheck string
+		var allNumbers = 0;
+		var phoneIndex = 0;
+		
+		//Use a loop to ensure that all of the characters in numberCheck variable are numbers
+		for (phoneIndex = 0; phoneIndex < 11; phoneIndex++)
+		{
+			if ((numberCheck.charCodeAt(phoneIndex) >= 48) && (numberCheck.charCodeAt(phoneIndex) <= 57))
+				allNumbers++;
+		}	
+		
+		//If all remaining chracters are numbers, set phonenumberEntry equal to valid;
+		if (allNumbers == 10)
+		{	
+			phonenumberEntry = "valid";
+			document.getElementById("phoneerror").innerHTML = ("")
+		}
+		
+		//If all remaining characters are not numbers, inform the user there is an error
+		else
+		{	
+			document.getElementById("phoneerror").innerHTML = ("You did not enter a 10-digit phone number in the correct format.")
+		}
+	}	
+	
+	//If the phone number is not 10 digits or not formatted correctly, inform the user there is an error
+	else
+	{	
+		document.getElementById("phoneerror").innerHTML = ("You did not enter a 10-digit phone number in the correct format.")
+	}
+	
+	
+	//Final step to verify all fields have been validated
+	
+	//If the username, password and phone number meet all requirements, thank the user
+	if ((usernameEntry == "valid") && (passwordEntry == "valid") && (phonenumberEntry == "valid") && (nameEntry == "valid") && (addressEntry == "valid") && (cityEntry == "valid") && (stateEntry == "valid") && (zipcodeEntry == "valid") && (emailEntry == "valid"))
+	{
+		document.getElementById("response").innerHTML = ("You have successfully registered!")
+	}
+		
+	//If there are errors, ask the user to fix them
+	else 
+	{
+		document.getElementById("response").innerHTML = ("Please fix the following errors in order to register:")
+	}
+}	 
+
+</script>	
+</head>
+
+<body>	
+<form name="register">
+<h1>Registration Form</h1>
+<p><input type="text" placeholder="Username" id="username" size="20" value="" />&nbsp; Must be between 4-20 characters.</p>
+<p><input type="text" placeholder="Password" id="password" size="12" value="" />&nbsp; Must contain at least one number, one uppercase letter, one lowercase letter, be between 4-12 characters, and contain one of these special charaters: #&$@.</p>
+<p><input type="text" placeholder="First and last name" id="firstlastname" size="40" value="" /></p>
+<p><input type="text" placeholder="Address" id="address" size="40" value="" /></p>
+<p><input type="text" placeholder="City" id="city" size="10" value="" />
+<input type="text" placeholder="State" id="state" size="10" value="" />
+<input type="text" placeholder="Zipcode" id="zipcode" size="10" value="" /><p>
+<p><input type="text" placeholder="Email address" id="email" size="20" value="" /><p>
+<p><input type="text" placeholder="Phone number" id="phonenumber" size="10" />&nbsp; Please use this format: (XXX)XXX-XXXX</p>
+<input type="button" onclick="getUserData('username','password','firstlastname','address','city','state','zipcode','email','phonenumber')" value="OK"></button>
+</form>
+<p><h3 id="response"></h3></p>
+<p id="usernameerror"></p>
+<p id="passworderror"></p>
+<p id="nameerror"></p>
+<p id="addresserror"></p>
+<p id="cityerror"></p>
+<p id="stateerror"></p>
+<p id="zipcodeerror"></p>
+<p id="emailerror"></p>
+<p id="phoneerror"></p>
+</body>
+</html>
